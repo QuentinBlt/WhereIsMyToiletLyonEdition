@@ -15,17 +15,21 @@ import com.qbaillet.whereismytoiletlyonedition.ui.theme.WhereIsMyToiletLyonEditi
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
-fun ToiletList(toilets: ArrayList<Toilet>){
+    fun ToiletList(toilets: ArrayList<Toilet>, statusBarHeight: Int){
     LazyColumn(contentPadding = PaddingValues(12.dp)) {
         val grouped = toilets.groupBy { it.town }
+        val lastTown = grouped.keys.last()
+        val lastToilet = grouped[lastTown]?.last()
+        var index = 0
         grouped.forEach { town, toilets ->
             stickyHeader {
-                ToiletHeader(town = town)
+                ToiletHeader(town = town, statusBarHeight)
             }
             items(toilets) { toilet ->
-                ToiletItem(toilet = toilet)
-            }
-        }
 
+                ToiletItem(toilet = toilet, statusBarHeight,if(toilet.gId == lastToilet?.gId) statusBarHeight else 0)
+            }
+            index++
+        }
     }
 }

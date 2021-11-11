@@ -10,4 +10,7 @@
     <color name="red_200">#EF9A9A</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2F</color>
+    <color name="red_700transparent">#AAD32F2F</color>
+    <color name="backgrouddark_transparent">#EE121212</color>
+    <color name="backgroudlight_transparent">#EEFFFFFF</color>
 </resources>

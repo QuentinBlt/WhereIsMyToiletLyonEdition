@@ -3,6 +3,7 @@ package com.qbaillet.whereismytoiletlyonedition.Views.Composable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -23,25 +24,29 @@ fun DefaultPreviewToiletItem() {
         ToiletItem(toilet = Toilet(
             "Poleymieux au mont d'or", "Mairie", 1,
             "ToiletMaire", 1, 2, "Place de la mairie", 7, "Sur la place"
-        ))
+        ), -25, 25)
     }
 }
 
 @Composable
-fun ToiletItem(toilet: Toilet) {
-    Card(
-        elevation = 10.dp, modifier = Modifier
-            .padding(3.dp)
-            .fillMaxWidth(), shape = RoundedCornerShape(5.dp)
+fun ToiletItem(toilet: Toilet, offset: Int, statusBarHeight: Int) {
+    Column(
+        modifier = Modifier.offset(y = offset.dp)
+            .padding(bottom = statusBarHeight.dp)
     ) {
-        Column(Modifier.padding(15.dp)) {
-            Text(
-                text = "${toilet.streetNumber} ${toilet.street}",
-                style = MaterialTheme.typography.h6
-            )
-            Text(text = "${toilet.observation}", style = MaterialTheme.typography.subtitle2)
+        Card(
+            elevation = 10.dp, modifier = Modifier
+                .padding(3.dp)
+                .fillMaxWidth(), shape = RoundedCornerShape(5.dp)
+        ) {
+            Column(Modifier.padding(15.dp)) {
+                Text(
+                    text = "${toilet.streetNumber} ${toilet.street}",
+                    style = MaterialTheme.typography.h6
+                )
+                Text(text = "${toilet.observation}", style = MaterialTheme.typography.subtitle2)
 
+            }
         }
     }
-
 }
