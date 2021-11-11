@@ -31,7 +31,6 @@ class ToiletListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-
         setContent {
             WhereIsMyToiletLyonEditionTheme {
                 // A surface container using the 'background' color from the theme
