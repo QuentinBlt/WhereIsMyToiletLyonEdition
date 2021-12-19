@@ -23,7 +23,7 @@ fun DefaultPreviewToiletItem() {
     WhereIsMyToiletLyonEditionTheme {
         ToiletItem(toilet = Toilet(
             "Poleymieux au mont d'or", "Mairie", 1,
-            "ToiletMaire", 1, 2, "Place de la mairie", 7, "Sur la place"
+            "ToiletMairiÒe", 1, 2, "Place de la mairie", 7, "Sur la place"
         ), -25, 25)
     }
 }
