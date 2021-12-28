@@ -4,15 +4,15 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ProgressIndicatorDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.qbaillet.whereismytoiletlyonedition.Models.Toilet
 import com.qbaillet.whereismytoiletlyonedition.ui.theme.WhereIsMyToiletLyonEditionTheme
@@ -43,16 +43,26 @@ fun ToiletList(toilets: List<Toilet>, statusBarHeight: Int){
 
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
+@Preview(showBackground = true)
 @Composable
 fun LoadingList(){
-    var progress by remember { mutableStateOf(0.1f) }
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress,
-        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
-    ).value
+
 
     Column(horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center) {
-        CircularProgressIndicator(progress = animatedProgress)
+        modifier = Modifier
+            .padding(12.dp)
+            .fillMaxWidth(),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(12.dp)
+                .fillMaxHeight(),
+        ){
+            Text("Récupération des toilettes", style = MaterialTheme.typography.h5)
+            Divider(modifier = Modifier
+                .fillMaxHeight()
+                .width(5.dp), color = Color.Transparent)
+            CircularProgressIndicator(color = MaterialTheme.colors.secondary)
+        }
     }
 }
